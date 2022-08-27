@@ -53,9 +53,6 @@ call plug#begin()
 "Linting
 Plug 'w0rp/ale'
 
-"Airline
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
 Plug 'airblade/vim-gitgutter'
 Plug 'Yggdroot/indentLine'
 Plug 'tpope/vim-fugitive'
@@ -112,9 +109,35 @@ Plug 'ludovicchabant/vim-gutentags'
 
 "Markdown
 Plug 'instant-markdown/vim-instant-markdown', {'for': 'markdown', 'do': 'yarn install'}
+" Treesitter
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+" Iconos Tree Sitter
 Plug 'ryanoasis/vim-devicons'
+
+" LuaLine
+Plug 'nvim-lualine/lualine.nvim'
+" If you want to have icons in your statusline choose one of these
+Plug 'kyazdani42/nvim-web-devicons'
+
 call plug#end()
+
+
+" Load LuaLine  Config
+lua << END
+require('lualine').setup({
+options = {
+ theme = "tokyonight",
+},
+
+sections = {
+  lualine_a = { "mode" },
+  lualine_b = { "filename" },
+  lualine_c = { "g:coc_status" },
+  lualine_x = { "branch" },
+  lualine_y = { "encoding" },
+  lualine_z = { "location" }
+  }})
+END
 
 filetype plugin indent on
 
@@ -132,10 +155,7 @@ let g:gruvbox_italicize_comments=1
 let g:gruvbox_contrast_dark='hard'
 
 colorscheme purify
-let g:airline_theme='purify'
 
-"colorscheme purify
-"let g:airline_theme='purify'
 
 "ALE
 let g:ale_linter_aliases = {'vue': ['vue', 'javascript']}
@@ -173,37 +193,6 @@ let g:vdebug_keymap = {
 " NEWTR
 " let g:netrw_liststyle = 3
 let g:netrw_banner = 0
-
-"AIRLINE
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#ale#enabled = 1
-
-if !exists('g:airline_symbols')
-    let g:airline_symbols = {}
-endif
-
-" unicode symbols
-let g:airline_left_sep = '»'
-let g:airline_left_sep = '▶'
-let g:airline_right_sep = '«'
-let g:airline_right_sep = '◀'
-let g:airline_symbols.linenr = '␊'
-let g:airline_symbols.linenr = '␤'
-let g:airline_symbols.linenr = '¶'
-let g:airline_symbols.branch = '⎇'
-let g:airline_symbols.paste = 'ρ'
-let g:airline_symbols.paste = 'Þ'
-let g:airline_symbols.paste = '∥'
-let g:airline_symbols.whitespace = 'Ξ'
-
-" airline symbols
-let g:airline_left_sep = ''
-let g:airline_left_alt_sep = ''
-let g:airline_right_sep = ''
-let g:airline_right_alt_sep = ''
-let g:airline_symbols.branch = ''
-let g:airline_symbols.readonly = ''
-let g:airline_symbols.linenr = ''
 
 set statusline+=%{gutentags#statusline()}
 let g:gutentags_ctags_exclude = [
