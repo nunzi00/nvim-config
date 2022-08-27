@@ -14,16 +14,11 @@ set laststatus=2
 set mouse=a
 " Speed up scrolling in Vim
 set ttyfast
-"nnoremap <SPACE> <Nop>
-"let mapleader =
-"let mapleader = '\'
-let mapleader = ' '
+let mapleader = ','
 set colorcolumn=120
 set splitbelow
 " Highlight matching pairs of brackets. Use the '%' character to jump between them.
 set matchpairs+=<:>
-" Set status line display
-set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ [BUFFER=%n]\ %{strftime('%c')}
 " Encoding
 set encoding=utf-8
 " Highlight matching search patterns
