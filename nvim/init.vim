@@ -141,6 +141,10 @@ sections = {
 END
 
 
+" Buftabline
+nnoremap <C-q> :bnext<CR>
+nnoremap <C-w> :bprev<CR>
+
 "THEMING
 let ayucolor='dark'
 let g:equinusocio_material_darker = 1
