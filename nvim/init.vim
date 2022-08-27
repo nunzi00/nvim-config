@@ -126,15 +126,11 @@ call plug#end()
 " Load LuaLine  Config
 lua << END
 require('lualine').setup({
-options = {
- theme = "tokyonight",
-},
-
 sections = {
-  lualine_a = { "mode" },
-  lualine_b = { "filename" },
+  lualine_a = { "mode", "os.date('%c')",  "require'lsp-status'.status()" },
+  lualine_b = { "filename"},
   lualine_c = { "g:coc_status" },
-  lualine_x = { "branch" },
+  lualine_x = { "branch", "diff" },
   lualine_y = { "encoding" },
   lualine_z = { "location" }
   }})
@@ -143,7 +139,38 @@ END
 
 " Buftabline
 nnoremap <C-q> :bnext<CR>
-nnoremap <C-w> :bprev<CR>
+nnoremap <C-e> :bprev<CR>
+
+"Intelephense
+if executable('intelephense')
+  augroup LspPHPIntelephense
+    au!
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'intelephense',
+        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'intelephense --stdio']},
+        \ 'whitelist': ['php'],
+        \ 'initialization_options': {'storagePath': '/tmp/intelephense'},
+        \ 'workspace_config': {
+        \   'intelephense': {
+        \     'files': {
+        \       'maxSize': 1000000,
+        \       'associations': ['*.php', '*.phtml'],
+        \       'exclude': [],
+        \     },
+        \     'completion': {
+        \       'insertUseDeclaration': v:true,
+        \       'fullyQualifyGlobalConstantsAndFunctions': v:false,
+        \       'triggerParameterHints': v:true,
+        \       'maxItems': 100,
+        \     },
+        \     'format': {
+        \       'enable': v:true
+        \     },
+        \   },
+        \ }
+        \})
+  augroup END
+endif
 
 "THEMING
 let ayucolor='dark'
@@ -196,7 +223,7 @@ let g:vdebug_keymap = {
 " let g:netrw_liststyle = 3
 let g:netrw_banner = 0
 
-set statusline+=%{gutentags#statusline()}
+"set statusline+=%{gutentags#statusline()}
 let g:gutentags_ctags_exclude = [
       \ '*.git', '*.svg', '*.hg',
       \ 'build',
@@ -338,7 +365,8 @@ vmap <silent><Leader>eem :<C-U>call phpactor#ExtractMethod()<CR>
 " Extract constant from selection
 vmap <silent><Leader>eec :<C-U>call phpactor#ExtractConstant()<CR>
 
-nmap <silent><S-F6> :<Plug>(coc-replacing)
+"nmap <F2> <Plug>(coc-rename)
+nmap <S-F2> <Plug>(coc-rename)
 
 " Shortcut for :Files command
 nmap <Leader>f :Files<CR>
