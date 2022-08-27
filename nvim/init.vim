@@ -34,6 +34,10 @@ autocmd FileType php :setlocal sw=4 ts=4 sts=4
 "autocmd VimEnter * ++nested  split term://zsh 
 filetype off
 
+filetype plugin indent on
+
+set termguicolors
+
 if exists('py2') && has('python')
 elseif has('python3')
 endif
@@ -55,7 +59,6 @@ Plug 'tommcdo/vim-fubitive'
 Plug 'ap/vim-css-color'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
-"Plug 'TaDaa/vimade'
 Plug 'SirVer/ultisnips'
 
 "Autocompletion
@@ -114,6 +117,9 @@ Plug 'nvim-lualine/lualine.nvim'
 " If you want to have icons in your statusline choose one of these
 Plug 'kyazdani42/nvim-web-devicons'
 
+" Tabs
+Plug 'ap/vim-buftabline'
+
 call plug#end()
 
 
@@ -134,9 +140,6 @@ sections = {
   }})
 END
 
-filetype plugin indent on
-
-set termguicolors
 
 "THEMING
 let ayucolor='dark'
