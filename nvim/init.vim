@@ -65,7 +65,7 @@ Plug 'SirVer/ultisnips'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " PHP Development
-Plug 'phpactor/phpactor' ,  {'do': 'composer install', 'for': 'php'}
+Plug 'phpactor/phpactor' ,  {'do': 'composer install -o', 'for': 'php'}
 Plug 'StanAngeloff/php.vim', {'for': 'php'}
 Plug 'lumiliet/vim-twig'
 Plug 'adoy/vim-php-refactoring-toolbox', {'for': 'php'}
@@ -126,51 +126,60 @@ call plug#end()
 " Load LuaLine  Config
 lua << END
 require('lualine').setup({
+options = {
+      theme = 'auto', -- lualine theme
+      icons_enabled = true,
+      component_separators = { left = '', right = '' },
+      section_separators = { left = '', right = '' }
+      },
 sections = {
-  lualine_a = { "mode", "os.date('%c')",  "require'lsp-status'.status()" },
+  lualine_a = { "mode", "os.date('%c')", 
+  {
+          'diagnostics',
+    
+          -- Table of diagnostic sources, available sources are:
+          --   'nvim_lsp', 'nvim_diagnostic', 'nvim_workspace_diagnostic', 'coc', 'ale', 'vim_lsp'.
+          -- or a function that returns a table as such:
+          --   { error=error_cnt, warn=warn_cnt, info=info_cnt, hint=hint_cnt }
+          sources = { 'nvim_diagnostic', 'coc' },
+    
+          -- Displays diagnostics for the defined severity types
+          sections = { 'error', 'warn', 'info', 'hint' },
+    
+          diagnostics_color = {
+            -- Same values as the general color option can be used here.
+            error = 'DiagnosticError', -- Changes diagnostics' error color.
+            warn  = 'DiagnosticWarn',  -- Changes diagnostics' warn color.
+            info  = 'DiagnosticInfo',  -- Changes diagnostics' info color.
+            hint  = 'DiagnosticHint',  -- Changes diagnostics' hint color.
+          },
+          symbols = {error = 'E', warn = 'W', info = 'I', hint = 'H'},
+          colored = true,           -- Displays diagnostics status in color if set to true.
+          update_in_insert = false, -- Update diagnostics in insert mode.
+          always_visible = false,   -- Show diagnostics even if there are none.
+        }
+        },
   lualine_b = { "filename"},
   lualine_c = { "g:coc_status" },
   lualine_x = { "branch", "diff" },
-  lualine_y = { "encoding" },
+  lualine_y = { "encoding",         {
+          'fileformat',
+          symbols = {
+            unix = '', -- e712
+            dos = '',  -- e70f
+            mac = '',  -- e711
+          }
+        }},
   lualine_z = { "location" }
-  }})
+  },
+  extensions = {'fzf', 'nerdtree'}
+})
 END
 
 
 " Buftabline
 nnoremap <C-q> :bnext<CR>
 nnoremap <C-e> :bprev<CR>
-
-"Intelephense
-if executable('intelephense')
-  augroup LspPHPIntelephense
-    au!
-    au User lsp_setup call lsp#register_server({
-        \ 'name': 'intelephense',
-        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'intelephense --stdio']},
-        \ 'whitelist': ['php'],
-        \ 'initialization_options': {'storagePath': '/tmp/intelephense'},
-        \ 'workspace_config': {
-        \   'intelephense': {
-        \     'files': {
-        \       'maxSize': 1000000,
-        \       'associations': ['*.php', '*.phtml'],
-        \       'exclude': [],
-        \     },
-        \     'completion': {
-        \       'insertUseDeclaration': v:true,
-        \       'fullyQualifyGlobalConstantsAndFunctions': v:false,
-        \       'triggerParameterHints': v:true,
-        \       'maxItems': 100,
-        \     },
-        \     'format': {
-        \       'enable': v:true
-        \     },
-        \   },
-        \ }
-        \})
-  augroup END
-endif
 
 "THEMING
 let ayucolor='dark'
@@ -365,7 +374,7 @@ vmap <silent><Leader>eem :<C-U>call phpactor#ExtractMethod()<CR>
 " Extract constant from selection
 vmap <silent><Leader>eec :<C-U>call phpactor#ExtractConstant()<CR>
 
-"nmap <F2> <Plug>(coc-rename)
+
 nmap <S-F2> <Plug>(coc-rename)
 
 " Shortcut for :Files command
@@ -431,5 +440,3 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
-" Terminal exit mapping
-:tnoremap <Esc> <C-\><C-n>
