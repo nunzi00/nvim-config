@@ -161,7 +161,7 @@ sections = {
         },
   lualine_b = { "filename"},
   lualine_c = { "g:coc_status" },
-  lualine_x = { "branch", "diff" },
+  lualine_x = { "branch", "diff", require'tabline'.tabline_tabs },
   lualine_y = { "encoding",         {
           'fileformat',
           symbols = {
@@ -176,7 +176,7 @@ sections = {
 })
 END
 
-
+nmap <leader>rn <Plug>(coc-rename)
 " Buftabline
 nnoremap <C-q> :bnext<CR>
 nnoremap <C-e> :bprev<CR>
@@ -196,6 +196,9 @@ colorscheme purify
 
 
 "ALE
+let g:ale_enabled = 1
+let g:ale_lint_on_text_changed = 'always'
+
 let g:ale_linter_aliases = {'vue': ['vue', 'javascript']}
 let g:ale_php_phpcbf_standard='PSR12'
 let g:ale_php_phpcs_standard='PSR12'
@@ -213,7 +216,7 @@ let g:ale_fixers = {
   \ 'python': ['black', 'add_blank_lines_for_python_control_statements', 'isort', 'remove_trailing_lines', 'reorder-python-imports', 'trim_whitespace', 'yapf']
   \}
 
-let g:ale_fix_on_save = 0
+let g:ale_fix_on_save = 1
 " Allow JSX in normal JS files
 let g:jsx_ext_required = 0
 
