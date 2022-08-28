@@ -29,6 +29,7 @@ set incsearch
 set ignorecase
 " Include only uppercase words with uppercase search term
 set smartcase
+set showmatch
 
 autocmd FileType php :setlocal sw=4 ts=4 sts=4
 "autocmd VimEnter * ++nested  split term://zsh 
@@ -36,7 +37,7 @@ filetype off
 
 filetype plugin indent on
 
-set termguicolors
+"set termguicolors
 
 if exists('py2') && has('python')
 elseif has('python3')
@@ -57,7 +58,7 @@ Plug 'Yggdroot/indentLine'
 Plug 'tpope/vim-fugitive'
 Plug 'tommcdo/vim-fubitive'
 Plug 'ap/vim-css-color'
-Plug 'junegunn/fzf'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'SirVer/ultisnips'
 
@@ -70,6 +71,7 @@ Plug 'StanAngeloff/php.vim', {'for': 'php'}
 Plug 'lumiliet/vim-twig'
 Plug 'adoy/vim-php-refactoring-toolbox', {'for': 'php'}
 Plug 'vim-vdebug/vdebug'
+Plug 'stephpy/vim-php-cs-fixer', { 'for': 'php' }
 
 " Javascript Development
 Plug 'pangloss/vim-javascript'
@@ -88,16 +90,16 @@ Plug 'chrisbra/csv.vim'
 Plug 'digitaltoad/vim-pug'
 
 " Themes
-Plug 'k4yt3x/ayu-vim-darker'
-Plug 'Siphalor/vim-atomified'
-Plug 'tomasiser/vim-code-dark'
-Plug 'trusktr/seti.vim'
-Plug 'patstockwell/vim-monokai-tasty'
-Plug 'nanotech/jellybeans.vim' , {'as': 'jellybeans'}
-Plug 'chuling/vim-equinusocio-material'
-Plug 'jaredgorski/spacecamp'
+"Plug 'k4yt3x/ayu-vim-darker'
+"Plug 'Siphalor/vim-atomified'
+"Plug 'tomasiser/vim-code-dark'
+"Plug 'trusktr/seti.vim'
+"Plug 'patstockwell/vim-monokai-tasty'
+"Plug 'nanotech/jellybeans.vim' , {'as': 'jellybeans'}
+"Plug 'chuling/vim-equinusocio-material'
+"Plug 'jaredgorski/spacecamp'
 Plug 'arcticicestudio/nord-vim'
-Plug 'sainnhe/sonokai'
+"Plug 'sainnhe/sonokai'
 Plug 'kyoz/purify', { 'rtp': 'vim' }
 Plug 'morhetz/gruvbox'
 Plug 'preservim/nerdtree'
@@ -119,6 +121,12 @@ Plug 'kyazdani42/nvim-web-devicons'
 
 " Tabs
 Plug 'ap/vim-buftabline'
+
+" makes vim autocomplete (), [], {}, '', "", etc
+Plug 'jiangmiao/auto-pairs'
+
+" necessary to follow styles of a project
+Plug 'editorconfig/editorconfig-vim'
 
 call plug#end()
 
@@ -161,7 +169,7 @@ sections = {
         },
   lualine_b = { "filename"},
   lualine_c = { "g:coc_status" },
-  lualine_x = { "branch", "diff", require'tabline'.tabline_tabs },
+  lualine_x = { "branch", "diff"},
   lualine_y = { "encoding",         {
           'fileformat',
           symbols = {
@@ -176,7 +184,45 @@ sections = {
 })
 END
 
+if executable('intelephense')
+  augroup LspPHPIntelephense
+    au!
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'intelephense',
+        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'intelephense --stdio']},
+        \ 'whitelist': ['php'],
+        \ 'initialization_options': {'storagePath': '/tmp/intelephense'},
+        \ 'workspace_config': {
+        \   'intelephense': {
+        \     'files': {
+        \       'maxSize': 1000000,
+        \       'associations': ['*.php', '*.phtml'],
+        \       'exclude': [],
+        \     },
+        \     'completion': {
+        \       'insertUseDeclaration': v:true,
+        \       'fullyQualifyGlobalConstantsAndFunctions': v:false,
+        \       'triggerParameterHints': v:true,
+        \       'maxItems': 100,
+        \     },
+        \     'format': {
+        \       'enable': v:true
+        \     },
+        \   },
+        \ }
+        \})
+  augroup END
+endif
+
+
+" proper true colors for terminal
+if (has("nvim"))
+    let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+endif
+set termguicolors
+
 nmap <leader>rn <Plug>(coc-rename)
+
 " Buftabline
 nnoremap <C-q> :bnext<CR>
 nnoremap <C-e> :bprev<CR>
