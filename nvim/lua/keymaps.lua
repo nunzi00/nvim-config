@@ -5,7 +5,7 @@ end
 vim.g.mapleader = ','
 
 keymap('n', '<leader>w', ':w<cr>')
-keymap('n', '<leader>f', ':Files<cr>')
+--keymap('n', '<leader>f', ':Files<cr>')
 keymap('n', '<leader>a', ':NvimTreeToggle<cr>')
 keymap('n', '<leader>tv', ':botright vnew <Bar> :terminal<cr>')
 keymap('n', '<leader>th', ':botright new <Bar> :terminal<cr>')
@@ -24,4 +24,6 @@ keymap('n', '<C-l>', '<C-W>l')
 -- <Tab> to navigate the completion menu
 --keymap('i', '<S-Tab>', 'pumvisible() ? "\\<C-p>" : "\\<Tab>"', {expr = true})
 --keymap('i', '<Tab>', 'pumvisible() ? "\\<C-n>" : "\\<Tab>"', {expr = true})
+--
+keymap('n', '<leader>li', ':ALEFix<cr>')
 

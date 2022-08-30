@@ -1,5 +1,6 @@
 {
- "diagnostic.messageTarget": "float",
+"suggest.autoTrigger": "always",
+"diagnostic.messageTarget": "float",
  "diagnostic.checkCurrentLine": true,
  "diagnostic.virtualText": true,
  "diagnostic.virtualTextCurrentLineOnly": false,

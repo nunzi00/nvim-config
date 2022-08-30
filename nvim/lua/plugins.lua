@@ -8,7 +8,7 @@ require('packer').startup(function(use)
     cmd = 'ALEEnable',
     config = 'vim.cmd[[ALEEnable]]'
   }
---  use 'neovim/nvim-lspconfig'
+  use 'neovim/nvim-lspconfig'
   use {
     'nvim-lualine/lualine.nvim',
     requires = { 'kyazdani42/nvim-web-devicons', opt = true }
@@ -21,6 +21,18 @@ require('packer').startup(function(use)
         'nvim-treesitter/nvim-treesitter',
         run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
   }
+  use {
+        'hrsh7th/nvim-cmp',
+        requires = {
+            'hrsh7th/cmp-nvim-lsp',
+            'hrsh7th/cmp-nvim-lua',
+            'octaltree/cmp-look', 
+            'hrsh7th/cmp-path', 
+            'hrsh7th/cmp-calc',
+            'f3fora/cmp-spell', 
+            'hrsh7th/cmp-emoji'  
+        }
+  }
   use 'L3MON4D3/LuaSnip'
   use {
   'kyazdani42/nvim-tree.lua',
@@ -31,7 +43,7 @@ require('packer').startup(function(use)
 }
   use 'ap/vim-css-color'
   use 'SirVer/ultisnips'
-  use {'neoclide/coc.nvim', branch= 'release'}
+--  use {'neoclide/coc.nvim', branch= 'release'}
   use {'iamcco/markdown-preview.nvim', run = 'cd app && yarn install', cmd = 'MarkdownPreview'}
   use {
     'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' },
