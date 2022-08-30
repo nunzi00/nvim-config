@@ -1,0 +1,1 @@
+--vim.opt.Vimphpcs_Standard='PSR12'

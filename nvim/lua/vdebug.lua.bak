@@ -1,0 +1,9 @@
+vim.cmd([[
+let g:vdebug_options = {      
+\    "break_on_open" : 0,
+\    "port" : 9003,
+\}
+let g:vdebug_keymap = {
+\    "eval_under_cursor" : "<Leader>ee"
+\}
+]])
