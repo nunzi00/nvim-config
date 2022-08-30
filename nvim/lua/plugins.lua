@@ -4,7 +4,7 @@ require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
   use {
     'w0rp/ale',
-    ft = {'sh', 'zsh', 'bash', 'cmake', 'html', 'markdown', 'vim', 'javascript', 'php', 'python', 'vue', 'typescript', 'json'},
+    ft = {'bash', 'html', 'javascript', 'json', 'lua', 'make', 'markdown', 'php', 'sql', 'typescript', 'vim', 'vue',  'xml', 'yaml'},
     cmd = 'ALEEnable',
     config = 'vim.cmd[[ALEEnable]]'
   }
@@ -21,7 +21,7 @@ require('packer').startup(function(use)
         'nvim-treesitter/nvim-treesitter',
         run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
   }
-  use {
+--[[  use {
         'hrsh7th/nvim-cmp',
         requires = {
             'hrsh7th/cmp-nvim-lsp',
@@ -32,7 +32,7 @@ require('packer').startup(function(use)
             'f3fora/cmp-spell', 
             'hrsh7th/cmp-emoji'  
         }
-  }
+  }]]
   use 'L3MON4D3/LuaSnip'
   use {
   'kyazdani42/nvim-tree.lua',

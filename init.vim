@@ -1,17 +1,17 @@
 "syntax enable
 "filetype plugin indent on     " required!
 "autocmd FileType php :setlocal sw=4 ts=4 sts=4
-augroup packer_user_config
-  autocmd!
-  autocmd BufWritePost plugins.lua source <afile> | PackerCompile
-augroup end
+"augroup packer_user_config
+"  autocmd!
+"  autocmd BufWritePost plugins.lua source <afile> | PackerCompile
+"augroup end
 "filetype off
 
 "if exists('py2') && has('python')
 "elseif has('python3')
 "endif
 
-call plug#begin('~/.vim/plugged')
+"call plug#begin('~/.vim/plugged')
 "Plug 'airblade/vim-gitgutter'
 "Plug 'Yggdroot/indentLine'
 "Plug 'tpope/vim-fugitive'
@@ -53,7 +53,7 @@ call plug#begin('~/.vim/plugged')
 " necessary to follow styles of a project
 "Plug 'editorconfig/editorconfig-vim'
 
-call plug#end()
+"call plug#end()
 
 
 "if executable('intelephense')
@@ -238,11 +238,11 @@ call plug#end()
 
 "inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 
-if has('nvim')
-  inoremap <silent><expr> <c-space> coc#refresh()
-else
-  inoremap <silent><expr> <c-@> coc#refresh()
-endif
+"if has('nvim')
+"  inoremap <silent><expr> <c-space> coc#refresh()
+"else
+"  inoremap <silent><expr> <c-@> coc#refresh()
+"endif
 
 "inoremap <expr> <cr> coc#pum#visible() ? coc#_select_confirm() : "\<CR>"
 

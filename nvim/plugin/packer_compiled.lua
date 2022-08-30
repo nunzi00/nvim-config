@@ -88,51 +88,6 @@ _G.packer_plugins = {
     path = "/home/lucas/.local/share/nvim/site/pack/packer/start/auto-pairs",
     url = "https://github.com/jiangmiao/auto-pairs"
   },
-  ["cmp-buffer"] = {
-    loaded = true,
-    path = "/home/lucas/.local/share/nvim/site/pack/packer/start/cmp-buffer",
-    url = "https://github.com/hrsh7th/cmp-buffer"
-  },
-  ["cmp-calc"] = {
-    loaded = true,
-    path = "/home/lucas/.local/share/nvim/site/pack/packer/start/cmp-calc",
-    url = "https://github.com/hrsh7th/cmp-calc"
-  },
-  ["cmp-emoji"] = {
-    loaded = true,
-    path = "/home/lucas/.local/share/nvim/site/pack/packer/start/cmp-emoji",
-    url = "https://github.com/hrsh7th/cmp-emoji"
-  },
-  ["cmp-look"] = {
-    loaded = true,
-    path = "/home/lucas/.local/share/nvim/site/pack/packer/start/cmp-look",
-    url = "https://github.com/octaltree/cmp-look"
-  },
-  ["cmp-nvim-lsp"] = {
-    loaded = true,
-    path = "/home/lucas/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp",
-    url = "https://github.com/hrsh7th/cmp-nvim-lsp"
-  },
-  ["cmp-nvim-lua"] = {
-    loaded = true,
-    path = "/home/lucas/.local/share/nvim/site/pack/packer/start/cmp-nvim-lua",
-    url = "https://github.com/hrsh7th/cmp-nvim-lua"
-  },
-  ["cmp-path"] = {
-    loaded = true,
-    path = "/home/lucas/.local/share/nvim/site/pack/packer/start/cmp-path",
-    url = "https://github.com/hrsh7th/cmp-path"
-  },
-  ["cmp-spell"] = {
-    loaded = true,
-    path = "/home/lucas/.local/share/nvim/site/pack/packer/start/cmp-spell",
-    url = "https://github.com/f3fora/cmp-spell"
-  },
-  cmp_luasnip = {
-    loaded = true,
-    path = "/home/lucas/.local/share/nvim/site/pack/packer/start/cmp_luasnip",
-    url = "https://github.com/saadparwaiz1/cmp_luasnip"
-  },
   ["coc-intelephense"] = {
     loaded = false,
     needs_bufread = false,
@@ -163,11 +118,6 @@ _G.packer_plugins = {
     only_cond = false,
     path = "/home/lucas/.local/share/nvim/site/pack/packer/opt/markdown-preview.nvim",
     url = "https://github.com/iamcco/markdown-preview.nvim"
-  },
-  ["nvim-cmp"] = {
-    loaded = true,
-    path = "/home/lucas/.local/share/nvim/site/pack/packer/start/nvim-cmp",
-    url = "https://github.com/hrsh7th/nvim-cmp"
   },
   ["nvim-lspconfig"] = {
     loaded = true,
@@ -271,27 +221,28 @@ time([[Config for gitsigns.nvim]], false)
 
 -- Command lazy-loads
 time([[Defining lazy-load commands]], true)
-pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file ALEEnable lua require("packer.load")({'ale'}, { cmd = "ALEEnable", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
 pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file MarkdownPreview lua require("packer.load")({'markdown-preview.nvim'}, { cmd = "MarkdownPreview", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
+pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file ALEEnable lua require("packer.load")({'ale'}, { cmd = "ALEEnable", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
 time([[Defining lazy-load commands]], false)
 
 vim.cmd [[augroup packer_load_aucmds]]
 vim.cmd [[au!]]
   -- Filetype lazy-loads
 time([[Defining lazy-load filetype autocommands]], true)
-vim.cmd [[au FileType vue ++once lua require("packer.load")({'ale'}, { ft = "vue" }, _G.packer_plugins)]]
-vim.cmd [[au FileType typescript ++once lua require("packer.load")({'ale'}, { ft = "typescript" }, _G.packer_plugins)]]
-vim.cmd [[au FileType sh ++once lua require("packer.load")({'ale'}, { ft = "sh" }, _G.packer_plugins)]]
-vim.cmd [[au FileType json ++once lua require("packer.load")({'ale'}, { ft = "json" }, _G.packer_plugins)]]
-vim.cmd [[au FileType vim ++once lua require("packer.load")({'ale'}, { ft = "vim" }, _G.packer_plugins)]]
-vim.cmd [[au FileType zsh ++once lua require("packer.load")({'ale'}, { ft = "zsh" }, _G.packer_plugins)]]
-vim.cmd [[au FileType bash ++once lua require("packer.load")({'ale'}, { ft = "bash" }, _G.packer_plugins)]]
-vim.cmd [[au FileType cmake ++once lua require("packer.load")({'ale'}, { ft = "cmake" }, _G.packer_plugins)]]
-vim.cmd [[au FileType html ++once lua require("packer.load")({'ale'}, { ft = "html" }, _G.packer_plugins)]]
-vim.cmd [[au FileType markdown ++once lua require("packer.load")({'ale'}, { ft = "markdown" }, _G.packer_plugins)]]
 vim.cmd [[au FileType javascript ++once lua require("packer.load")({'ale'}, { ft = "javascript" }, _G.packer_plugins)]]
-vim.cmd [[au FileType php ++once lua require("packer.load")({'ale', 'vdebug', 'vim-php-cs-fixer', 'vim-php-refactoring-toolbox', 'vim-twig', 'coc-intelephense', 'php.vim', 'phpactor'}, { ft = "php" }, _G.packer_plugins)]]
-vim.cmd [[au FileType python ++once lua require("packer.load")({'ale'}, { ft = "python" }, _G.packer_plugins)]]
+vim.cmd [[au FileType markdown ++once lua require("packer.load")({'ale'}, { ft = "markdown" }, _G.packer_plugins)]]
+vim.cmd [[au FileType php ++once lua require("packer.load")({'vim-php-refactoring-toolbox', 'vim-twig', 'php.vim', 'coc-intelephense', 'ale', 'vim-php-cs-fixer', 'vdebug', 'phpactor'}, { ft = "php" }, _G.packer_plugins)]]
+vim.cmd [[au FileType json ++once lua require("packer.load")({'ale'}, { ft = "json" }, _G.packer_plugins)]]
+vim.cmd [[au FileType typescript ++once lua require("packer.load")({'ale'}, { ft = "typescript" }, _G.packer_plugins)]]
+vim.cmd [[au FileType vue ++once lua require("packer.load")({'ale'}, { ft = "vue" }, _G.packer_plugins)]]
+vim.cmd [[au FileType xml ++once lua require("packer.load")({'ale'}, { ft = "xml" }, _G.packer_plugins)]]
+vim.cmd [[au FileType yaml ++once lua require("packer.load")({'ale'}, { ft = "yaml" }, _G.packer_plugins)]]
+vim.cmd [[au FileType vim ++once lua require("packer.load")({'ale'}, { ft = "vim" }, _G.packer_plugins)]]
+vim.cmd [[au FileType sql ++once lua require("packer.load")({'ale'}, { ft = "sql" }, _G.packer_plugins)]]
+vim.cmd [[au FileType lua ++once lua require("packer.load")({'ale'}, { ft = "lua" }, _G.packer_plugins)]]
+vim.cmd [[au FileType bash ++once lua require("packer.load")({'ale'}, { ft = "bash" }, _G.packer_plugins)]]
+vim.cmd [[au FileType make ++once lua require("packer.load")({'ale'}, { ft = "make" }, _G.packer_plugins)]]
+vim.cmd [[au FileType html ++once lua require("packer.load")({'ale'}, { ft = "html" }, _G.packer_plugins)]]
 time([[Defining lazy-load filetype autocommands]], false)
 vim.cmd("augroup END")
 vim.cmd [[augroup filetypedetect]]
