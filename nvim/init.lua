@@ -15,7 +15,7 @@ require 'plugins.lsp-config'
 --require'lspconfig'.tsserver.setup{}
 require 'plugins.lspsignature'
 require 'plugins.intelephense'
-require 'plugins.cmp'
+require 'plugins.cmp2'
 --[[require'lspconfig'.sumneko_lua.setup{
   settings = {
     Lua = {
