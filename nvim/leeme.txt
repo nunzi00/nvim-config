@@ -1,0 +1,1 @@
+:LspInstall dockerls dotls eslint  tsserver remark_ls intelephense phpactor psalm volar lemminx yamlls bashls 

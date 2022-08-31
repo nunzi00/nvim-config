@@ -37,6 +37,8 @@ keymap('v','<silent><leader>eec', ':<C-U>call phpactor#ExtractConstant()<cr>')
 keymap('n', '<leader>u', ':phpactor#UseAdd()<cr>')
 
 
+keymap('v', '<C-/>','lua require("Comment.api").toggle.linewise(vim.fn.visualmode())<cr>')
+
 
 
 

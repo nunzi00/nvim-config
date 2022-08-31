@@ -35,7 +35,7 @@ local options = {
 vim.opt.matchpairs:append '<:>'
 
 vim.cmd [[ set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ [BUFFER=%n]\ %{strftime('%c')} ]]
-
+--vim.cmd('colorscheme everforest')
 for k, v in pairs(options) do
   vim.opt[k] = v
 end

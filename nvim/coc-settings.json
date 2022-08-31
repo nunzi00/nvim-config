@@ -26,5 +26,10 @@
  "intelephense.completion.insertUseDeclaration": true,
  "intelephense.diagnostics.languageConstraints": true,
  "intelephense.completion.fullyQualifyGlobalConstantsAndFunctions": true,
- "intelephense.completion.triggerParameterHints": true
+ "intelephense.completion.triggerParameterHints": true,
+"intelephense.diagnostics.undefinedClassConstants": true,
+"intelephense.diagnostics.undefinedMethods": true,
+"intelephense.diagnostics.enable": true ,
+"intelephense.completion.insertUseDeclaration": true  
+
 }
