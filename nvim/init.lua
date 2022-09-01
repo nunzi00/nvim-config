@@ -16,7 +16,7 @@ require 'plugins.lsp-config'
 require 'plugins.lspsignature'
 require 'plugins.intelephense'
 require 'plugins.cmp2'
---[[require'lspconfig'.sumneko_lua.setup{
+require'lspconfig'.sumneko_lua.setup{
   settings = {
     Lua = {
       diagnostics = {
@@ -30,8 +30,9 @@ require 'plugins.cmp2'
       }
     }
   }
-}]]
+}
 
+require'lspconfig'.intelephense.setup{}
 require 'colorizer'.setup()
 require("mason").setup({
     ui = {
