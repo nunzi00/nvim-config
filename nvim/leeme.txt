@@ -1,1 +1,12 @@
 :LspInstall dockerls dotls eslint  tsserver remark_ls intelephense phpactor psalm volar lemminx yamlls bashls 
+
+npm i -g intelephense bash-language-server vscode-langservers-extracted dockerfile-language-server-nodejs
+dot-language-server vscode-langservers-extracted typescript-language-server typescript vls
+
+composer global require vimeo/psalm
+
+
+
+LspInstall intelephense bash-language-server cssls dockerls dotls tsserver vuels jsonls  
+
+

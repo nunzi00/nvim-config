@@ -84,6 +84,9 @@ use { "williamboman/mason.nvim" }
     use {'ms-jpq/coq.artifacts', branch = 'artifacts'}
 
     use {'stevearc/aerial.nvim', config = function() require('aerial').setup() end}
+    use 'nvim-lua/lsp-status.nvim'
+    use 'shaunsingh/nord.nvim'
+
 end)
 
 

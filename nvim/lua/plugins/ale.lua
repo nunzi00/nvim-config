@@ -23,7 +23,7 @@ vim.g['ale_linters'] = {
    yaml = {'prettier'}
   }
 
-vim.g['ale_fixers'] = {                 
+vim.g['ale_fixers'] = {
    bash = {'shellfmt'},
    javascript= {'eslint'},
    json= {'prettier'},
