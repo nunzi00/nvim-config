@@ -36,25 +36,18 @@ keymap('v','<silent><leader>eem', ':<C-U>call phpactor#ExtractMethod()<cr>')
 keymap('v','<silent><leader>eec', ':<C-U>call phpactor#ExtractConstant()<cr>')
 keymap('n', '<leader>u', ':phpactor#UseAdd()<cr>')
 
-
+-- Buftabline
+keymap('n', '<leader>Q', ':bprevious<cr>')
+keymap('n', '<leader>E', ':bnext<cr>')
 keymap('v', '<C-/>','lua require("Comment.api").toggle.linewise(vim.fn.visualmode())<cr>')
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+-- rename rn
+-- vdebug
+-- Snakeize
+-- UltiSnips
 
 
 
@@ -62,12 +55,6 @@ keymap('v', '<C-/>','lua require("Comment.api").toggle.linewise(vim.fn.visualmod
 
 
 --[[
-keymap('n','<leader>rn <Plug>(coc-rename)
-:command JsonFormat :%!python -m json.tool
-command RemoveTrail execute "%s/\s\+$//"
-inoremap <leader>rt :RemoveTrail<cr>
-cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
-
 function! ConfigVdebug(project)
   VdebugOpt ide_key GETLIFE_DOCKER
   let g:vdebug_options.path_maps = {"/app": "/home/lucas/getlife/" . a:project}
@@ -87,24 +74,6 @@ endfunction
 
 command! -range SnakeCase silent! call <SID>Snakeize(<range>)
 
-inoremap jj <Esc>
-noremap <C-l> gt
-noremap <C-h> gT
-noremap <S-l> <C-w>l
-noremap <S-h> <C-w>h
-noremap <S-j> <C-w>j
-noremap <S-k> <C-w>k
-
-
-keymap('n','<S-F2> <Plug>(coc-rename)
-
--- Shortcut for :Files command
-au BufNewFile,BufFilePre,BufRead *.md set filetype=markdown
-keymap('n','<S-F4> :execute "silent grep! -R " . expand("<cword>") . " ./**" <Bar> cw<cr>
--- Highlight jenkinsfiles
-au BufNewFile,BufRead Jenkinsfile setf groovy
--- Extract expression (normal mode)
-keymap('n','<silent><leader>ef :CocCommand eslint.executeAutofix<cr>
 -- UltiSnips Configuration
 let g:UltiSnipsExpandTrigger="<nop>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
@@ -113,13 +82,6 @@ let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 let g:NERDTreeQuitOnOpen=1
 
 let g:ultisnips_php_scalar_type=1
-map <C-j> <C-W>j
-map <C-k> <C-W>k
-map <C-h> <C-W>h
-map <C-l> <C-W>l
-noremap <leader>s :CocSearch
-noremap <leader>tv :botright vnew <Bar> :terminal<cr>
-noremap <leader>th :botright new <Bar> :terminal<cr>
 -- GoTo code navigation.
 keymap('n','<silent> gd <Plug>(coc-definition)
 keymap('n','<silent> gy <Plug>(coc-type-definition)

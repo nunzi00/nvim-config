@@ -36,7 +36,7 @@ vim.api.nvim_create_autocmd('User', {
     bufmap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>')
 
     -- Jump to the definition
-    bufmap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>')
+    bufmap('n', 'gd', 'vim.lsp.buf.definition<cr>')
 
     -- Jump to declaration
     bufmap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>')
@@ -48,7 +48,7 @@ vim.api.nvim_create_autocmd('User', {
     bufmap('n', 'go', '<cmd>lua vim.lsp.buf.type_definition()<cr>')
 
     -- Lists all the references 
-    bufmap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>')
+    bufmap('n', 'gr', 'vim.lsp.buf.references<cr>')
 
     -- Displays a function's signature information
     bufmap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<cr>')

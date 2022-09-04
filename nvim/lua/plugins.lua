@@ -20,7 +20,7 @@ require('packer').startup(function(use)
         'nvim-treesitter/nvim-treesitter',
         run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
   }
-use { "williamboman/mason.nvim" }
+  use { "williamboman/mason.nvim" }
   use {
         'hrsh7th/nvim-cmp',
         requires = {
@@ -30,13 +30,13 @@ use { "williamboman/mason.nvim" }
             'f3fora/cmp-spell', 'hrsh7th/cmp-emoji','saadparwaiz1/cmp_luasnip'
         }
   }
-  use { 
-  'kyazdani42/nvim-tree.lua',
-  requires = {
-    'kyazdani42/nvim-web-devicons', -- optional, for file icons
-  },
-  tag = 'nightly' -- optional, updated every week. (see issue #1193)
-}
+  use {
+    'kyazdani42/nvim-tree.lua',
+    requires = {
+      'kyazdani42/nvim-web-devicons', -- optional, for file icons
+    },
+    tag = 'nightly' -- optional, updated every week. (see issue #1193)
+  }
   use 'ap/vim-css-color'
 --  use 'SirVer/ultisnips'
   use 'L3MON4D3/LuaSnip'
@@ -80,42 +80,42 @@ use { "williamboman/mason.nvim" }
   use 'tpope/vim-fugitive'
   use 'f-person/git-blame.nvim'
 -- Autocomplete
-    use {'ms-jpq/coq_nvim', run = ':COQdeps'}
-    use {'ms-jpq/coq.artifacts', branch = 'artifacts'}
+  use {'ms-jpq/coq_nvim', run = ':COQdeps'}
+  use {'ms-jpq/coq.artifacts', branch = 'artifacts'}
 
-    use {'stevearc/aerial.nvim', config = function() require('aerial').setup() end}
-    use 'nvim-lua/lsp-status.nvim'
+  use {'stevearc/aerial.nvim', config = function() require('aerial').setup() end}
+  use 'nvim-lua/lsp-status.nvim'
 
 --Theme
-    use 'shaunsingh/nord.nvim'
+  use 'shaunsingh/nord.nvim'
 
 -- Migrate ultisnips to LuaSnip
    use {
-  "smjonas/snippet-converter.nvim",
-  -- SnippetConverter uses semantic versioning. Example: use version = "1.*" to avoid breaking changes on version 1.
-  -- Uncomment the next line to follow stable releases only.
-  -- version = "*",
-  config = function()
-    local template = {
-      -- name = "t1", (optionally give your template a name to refer to it in the `ConvertSnippets` command)
-      sources = {
-        ultisnips = {
-          -- Add snippets from (plugin) folders or individual files on your runtimepath...
-          "./vim-snippets/UltiSnips",
-          "./latex-snippets/tex.snippets",
-          -- ...or use absolute paths on your system.
-          vim.fn.stdpath("config") .. "/UltiSnips",
+    "smjonas/snippet-converter.nvim",
+    -- SnippetConverter uses semantic versioning. Example: use version = "1.*" to avoid breaking changes on version 1.
+    -- Uncomment the next line to follow stable releases only.
+    -- version = "*",
+    config = function()
+      local template = {
+        -- name = "t1", (optionally give your template a name to refer to it in the `ConvertSnippets` command)
+        sources = {
+          ultisnips = {
+            -- Add snippets from (plugin) folders or individual files on your runtimepath...
+            "./vim-snippets/UltiSnips",
+            "./latex-snippets/tex.snippets",
+            -- ...or use absolute paths on your system.
+            vim.fn.stdpath("config") .. "/UltiSnips",
+          },
+          snipmate = {
+            "vim-snippets/snippets",
+          },
         },
-        snipmate = {
-          "vim-snippets/snippets",
+        output = {
+          -- Specify the output formats and paths
+          vscode_luasnip = {
+            vim.fn.stdpath("config") .. "/luasnip_snippets",
+          },
         },
-      },
-      output = {
-        -- Specify the output formats and paths
-        vscode_luasnip = {
-          vim.fn.stdpath("config") .. "/luasnip_snippets",
-        },
-      },
     }
 
     require("snippet_converter").setup {
@@ -125,6 +125,8 @@ use { "williamboman/mason.nvim" }
     }
   end
 }
+  -- Buffers
+  use 'ap/vim-buftabline'
 end)
 
 
