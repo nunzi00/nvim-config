@@ -10,12 +10,13 @@ require 'plugins.ale'
 require 'plugins.phpcs'
 require 'plugins.php-refactoring'
 require 'functions'
---require 'plugins.coqq'
+require 'plugins.coqq'
 require 'plugins.lsp-config'
 require 'plugins.lspsignature'
 require 'plugins.intelephense'
 require 'plugins.cmp2'
-require 'plugins.luasnip'
+--require 'plugins.luasnip'
+require 'plugins.buferline'
 require 'colorizer'.setup()
 require("mason").setup({
     ui = {
@@ -71,3 +72,6 @@ require('lualine').setup {
     theme = 'nord'
   }
 }
+
+
+

@@ -9,23 +9,26 @@ vim.api.nvim_command('packadd packer.nvim')
 
 local no_errors, error_msg = pcall(function()
 
-  local time
-  local profile_info
-  local should_profile = false
-  if should_profile then
-    local hrtime = vim.loop.hrtime
-    profile_info = {}
-    time = function(chunk, start)
-      if start then
-        profile_info[chunk] = hrtime()
-      else
-        profile_info[chunk] = (hrtime() - profile_info[chunk]) / 1e6
-      end
+_G._packer = _G._packer or {}
+_G._packer.inside_compile = true
+
+local time
+local profile_info
+local should_profile = false
+if should_profile then
+  local hrtime = vim.loop.hrtime
+  profile_info = {}
+  time = function(chunk, start)
+    if start then
+      profile_info[chunk] = hrtime()
+    else
+      profile_info[chunk] = (hrtime() - profile_info[chunk]) / 1e6
     end
-  else
-    time = function(chunk, start) end
   end
-  
+else
+  time = function(chunk, start) end
+end
+
 local function save_profiles(threshold)
   local sorted_times = {}
   for chunk_name, time_taken in pairs(profile_info) do
@@ -38,8 +41,10 @@ local function save_profiles(threshold)
       results[i] = elem[1] .. ' took ' .. elem[2] .. 'ms'
     end
   end
+  if threshold then
+    table.insert(results, '(Only showing plugins that took longer than ' .. threshold .. ' ms ' .. 'to load)')
+  end
 
-  _G._packer = _G._packer or {}
   _G._packer.profile_output = results
 end
 
@@ -93,6 +98,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/lucas/.local/share/nvim/site/pack/packer/start/auto-pairs",
     url = "https://github.com/jiangmiao/auto-pairs"
+  },
+  ["barbar.nvim"] = {
+    loaded = true,
+    path = "/home/lucas/.local/share/nvim/site/pack/packer/start/barbar.nvim",
+    url = "https://github.com/romgrk/barbar.nvim"
   },
   ["cmp-buffer"] = {
     loaded = true,
@@ -259,8 +269,9 @@ _G.packer_plugins = {
     url = "https://github.com/nvim-treesitter/nvim-treesitter"
   },
   ["nvim-web-devicons"] = {
-    loaded = true,
-    path = "/home/lucas/.local/share/nvim/site/pack/packer/start/nvim-web-devicons",
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/lucas/.local/share/nvim/site/pack/packer/opt/nvim-web-devicons",
     url = "https://github.com/kyazdani42/nvim-web-devicons"
   },
   ["packer.nvim"] = {
@@ -354,14 +365,14 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
--- Config for: snippet-converter.nvim
-time([[Config for snippet-converter.nvim]], true)
-try_loadstring("\27LJ\2\nŠ\3\0\0\6\0\21\0%5\0\n\0005\1\6\0005\2\0\0006\3\1\0009\3\2\0039\3\3\3'\5\4\0B\3\2\2'\4\5\0&\3\4\3>\3\3\2=\2\a\0015\2\b\0=\2\t\1=\1\v\0005\1\r\0004\2\3\0006\3\1\0009\3\2\0039\3\3\3'\5\4\0B\3\2\2'\4\f\0&\3\4\3>\3\1\2=\2\14\1=\1\15\0006\1\16\0'\3\17\0B\1\2\0029\1\18\0015\3\19\0004\4\3\0>\0\1\4=\4\20\3B\1\2\1K\0\1\0\14templates\1\0\0\nsetup\22snippet_converter\frequire\voutput\19vscode_luasnip\1\0\0\22/luasnip_snippets\fsources\1\0\0\rsnipmate\1\2\0\0\26vim-snippets/snippets\14ultisnips\1\0\0\15/UltiSnips\vconfig\fstdpath\afn\bvim\1\3\0\0\29./vim-snippets/UltiSnips\"./latex-snippets/tex.snippets\0", "config", "snippet-converter.nvim")
-time([[Config for snippet-converter.nvim]], false)
 -- Config for: gitsigns.nvim
 time([[Config for gitsigns.nvim]], true)
 try_loadstring("\27LJ\2\n6\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\rgitsigns\frequire\0", "config", "gitsigns.nvim")
 time([[Config for gitsigns.nvim]], false)
+-- Config for: snippet-converter.nvim
+time([[Config for snippet-converter.nvim]], true)
+try_loadstring("\27LJ\2\nŠ\3\0\0\6\0\21\0%5\0\n\0005\1\6\0005\2\0\0006\3\1\0009\3\2\0039\3\3\3'\5\4\0B\3\2\2'\4\5\0&\3\4\3>\3\3\2=\2\a\0015\2\b\0=\2\t\1=\1\v\0005\1\r\0004\2\3\0006\3\1\0009\3\2\0039\3\3\3'\5\4\0B\3\2\2'\4\f\0&\3\4\3>\3\1\2=\2\14\1=\1\15\0006\1\16\0'\3\17\0B\1\2\0029\1\18\0015\3\19\0004\4\3\0>\0\1\4=\4\20\3B\1\2\1K\0\1\0\14templates\1\0\0\nsetup\22snippet_converter\frequire\voutput\19vscode_luasnip\1\0\0\22/luasnip_snippets\fsources\1\0\0\rsnipmate\1\2\0\0\26vim-snippets/snippets\14ultisnips\1\0\0\15/UltiSnips\vconfig\fstdpath\afn\bvim\1\3\0\0\29./vim-snippets/UltiSnips\"./latex-snippets/tex.snippets\0", "config", "snippet-converter.nvim")
+time([[Config for snippet-converter.nvim]], false)
 -- Config for: aerial.nvim
 time([[Config for aerial.nvim]], true)
 try_loadstring("\27LJ\2\n4\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\vaerial\frequire\0", "config", "aerial.nvim")
@@ -377,20 +388,20 @@ vim.cmd [[augroup packer_load_aucmds]]
 vim.cmd [[au!]]
   -- Filetype lazy-loads
 time([[Defining lazy-load filetype autocommands]], true)
-vim.cmd [[au FileType vue ++once lua require("packer.load")({'ale'}, { ft = "vue" }, _G.packer_plugins)]]
-vim.cmd [[au FileType bash ++once lua require("packer.load")({'ale'}, { ft = "bash" }, _G.packer_plugins)]]
-vim.cmd [[au FileType html ++once lua require("packer.load")({'ale'}, { ft = "html" }, _G.packer_plugins)]]
-vim.cmd [[au FileType javascript ++once lua require("packer.load")({'ale'}, { ft = "javascript" }, _G.packer_plugins)]]
-vim.cmd [[au FileType markdown ++once lua require("packer.load")({'ale'}, { ft = "markdown" }, _G.packer_plugins)]]
-vim.cmd [[au FileType php ++once lua require("packer.load")({'vim-twig', 'phpactor', 'vim-php-refactoring-toolbox', 'ale', 'php.vim', 'vdebug', 'vim-php-cs-fixer'}, { ft = "php" }, _G.packer_plugins)]]
-vim.cmd [[au FileType sql ++once lua require("packer.load")({'ale'}, { ft = "sql" }, _G.packer_plugins)]]
-vim.cmd [[au FileType typescript ++once lua require("packer.load")({'ale'}, { ft = "typescript" }, _G.packer_plugins)]]
-vim.cmd [[au FileType make ++once lua require("packer.load")({'ale'}, { ft = "make" }, _G.packer_plugins)]]
 vim.cmd [[au FileType xml ++once lua require("packer.load")({'ale'}, { ft = "xml" }, _G.packer_plugins)]]
 vim.cmd [[au FileType yaml ++once lua require("packer.load")({'ale'}, { ft = "yaml" }, _G.packer_plugins)]]
+vim.cmd [[au FileType make ++once lua require("packer.load")({'ale'}, { ft = "make" }, _G.packer_plugins)]]
+vim.cmd [[au FileType vue ++once lua require("packer.load")({'ale'}, { ft = "vue" }, _G.packer_plugins)]]
+vim.cmd [[au FileType vim ++once lua require("packer.load")({'ale'}, { ft = "vim" }, _G.packer_plugins)]]
 vim.cmd [[au FileType json ++once lua require("packer.load")({'ale'}, { ft = "json" }, _G.packer_plugins)]]
 vim.cmd [[au FileType lua ++once lua require("packer.load")({'ale'}, { ft = "lua" }, _G.packer_plugins)]]
-vim.cmd [[au FileType vim ++once lua require("packer.load")({'ale'}, { ft = "vim" }, _G.packer_plugins)]]
+vim.cmd [[au FileType bash ++once lua require("packer.load")({'ale'}, { ft = "bash" }, _G.packer_plugins)]]
+vim.cmd [[au FileType html ++once lua require("packer.load")({'ale'}, { ft = "html" }, _G.packer_plugins)]]
+vim.cmd [[au FileType markdown ++once lua require("packer.load")({'ale'}, { ft = "markdown" }, _G.packer_plugins)]]
+vim.cmd [[au FileType php ++once lua require("packer.load")({'vdebug', 'vim-php-cs-fixer', 'phpactor', 'vim-php-refactoring-toolbox', 'vim-twig', 'ale', 'php.vim'}, { ft = "php" }, _G.packer_plugins)]]
+vim.cmd [[au FileType sql ++once lua require("packer.load")({'ale'}, { ft = "sql" }, _G.packer_plugins)]]
+vim.cmd [[au FileType typescript ++once lua require("packer.load")({'ale'}, { ft = "typescript" }, _G.packer_plugins)]]
+vim.cmd [[au FileType javascript ++once lua require("packer.load")({'ale'}, { ft = "javascript" }, _G.packer_plugins)]]
 time([[Defining lazy-load filetype autocommands]], false)
 vim.cmd("augroup END")
 vim.cmd [[augroup filetypedetect]]
@@ -398,6 +409,13 @@ time([[Sourcing ftdetect script at: /home/lucas/.local/share/nvim/site/pack/pack
 vim.cmd [[source /home/lucas/.local/share/nvim/site/pack/packer/opt/vim-twig/ftdetect/twig.vim]]
 time([[Sourcing ftdetect script at: /home/lucas/.local/share/nvim/site/pack/packer/opt/vim-twig/ftdetect/twig.vim]], false)
 vim.cmd("augroup END")
+
+_G._packer.inside_compile = false
+if _G._packer.needs_bufread == true then
+  vim.cmd("doautocmd BufRead")
+end
+_G._packer.needs_bufread = false
+
 if should_profile then save_profiles() end
 
 end)

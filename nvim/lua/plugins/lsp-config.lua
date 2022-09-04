@@ -110,3 +110,43 @@ require'lspconfig'.phpactor.setup{}
 require'lspconfig'.psalm.setup{}
 require'lspconfig'.tsserver.setup{}
 require'lspconfig'.vuels.setup{}
+--[[local lsp = {
+  protocol = protocol,
+
+  handlers = default_handlers,
+
+  buf = require('vim.lsp.buf'),
+  diagnostic = require('vim.lsp.diagnostic'),
+  codelens = require('vim.lsp.codelens'),
+  util = util,
+
+  -- Allow raw RPC access.
+  rpc = lsp_rpc,
+
+  -- Export these directly from rpc.
+  rpc_response_error = lsp_rpc.rpc_response_error,
+}
+-- maps request name to the required server_capability in the client.
+lsp._request_name_to_capability = {
+  ['textDocument/hover'] = { 'hoverProvider' },
+  ['textDocument/signatureHelp'] = { 'signatureHelpProvider' },
+  ['textDocument/definition'] = { 'definitionProvider' },
+  ['textDocument/implementation'] = { 'implementationProvider' },
+  ['textDocument/declaration'] = { 'declarationProvider' },
+  ['textDocument/typeDefinition'] = { 'typeDefinitionProvider' },
+  ['textDocument/documentSymbol'] = { 'documentSymbolProvider' },
+  ['textDocument/prepareCallHierarchy'] = { 'callHierarchyProvider' },
+  ['textDocument/rename'] = { 'renameProvider' },
+  ['textDocument/prepareRename'] = { 'renameProvider', 'prepareProvider' },
+  ['textDocument/codeAction'] = { 'codeActionProvider' },
+  ['textDocument/codeLens'] = { 'codeLensProvider' },
+  ['codeLens/resolve'] = { 'codeLensProvider', 'resolveProvider' },
+  ['workspace/executeCommand'] = { 'executeCommandProvider' },
+  ['workspace/symbol'] = { 'workspaceSymbolProvider' },
+  ['textDocument/references'] = { 'referencesProvider' },
+  ['textDocument/rangeFormatting'] = { 'documentRangeFormattingProvider' },
+  ['textDocument/formatting'] = { 'documentFormattingProvider' },
+  ['textDocument/completion'] = { 'completionProvider' },
+  ['textDocument/documentHighlight'] = { 'documentHighlightProvider' },
+}
+]]

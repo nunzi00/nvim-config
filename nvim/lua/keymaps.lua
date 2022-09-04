@@ -36,15 +36,68 @@ keymap('v','<silent><leader>eem', ':<C-U>call phpactor#ExtractMethod()<cr>')
 keymap('v','<silent><leader>eec', ':<C-U>call phpactor#ExtractConstant()<cr>')
 keymap('n', '<leader>u', ':phpactor#UseAdd()<cr>')
 
--- Buftabline
-keymap('n', '<leader>Q', ':bprevious<cr>')
-keymap('n', '<leader>E', ':bnext<cr>')
-keymap('v', '<C-/>','lua require("Comment.api").toggle.linewise(vim.fn.visualmode())<cr>')
+local map = vim.api.nvim_set_keymap
+opts = {}
+opts = { noremap=true, silent=true }
+map('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+map('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+map('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+map('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+map('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+map('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
+map('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
+map('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
+map('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+map('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+map('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+map('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+map('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
+map('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
+map('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
+map('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
+map('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 
 
+local opts = { noremap = true, silent = true }
+
+-- Move to previous/next
+map('n', '<A-,>', '<Cmd>BufferPrevious<CR>', opts)
+map('n', '<A-.>', '<Cmd>BufferNext<CR>', opts)
+-- Re-order to previous/next
+map('n', '<A-<>', '<Cmd>BufferMovePrevious<CR>', opts)
+map('n', '<A->>', '<Cmd>BufferMoveNext<CR>', opts)
+-- Goto buffer in position...
+map('n', '<A-1>', '<Cmd>BufferGoto 1<CR>', opts)
+map('n', '<A-2>', '<Cmd>BufferGoto 2<CR>', opts)
+map('n', '<A-3>', '<Cmd>BufferGoto 3<CR>', opts)
+map('n', '<A-4>', '<Cmd>BufferGoto 4<CR>', opts)
+map('n', '<A-5>', '<Cmd>BufferGoto 5<CR>', opts)
+map('n', '<A-6>', '<Cmd>BufferGoto 6<CR>', opts)
+map('n', '<A-7>', '<Cmd>BufferGoto 7<CR>', opts)
+map('n', '<A-8>', '<Cmd>BufferGoto 8<CR>', opts)
+map('n', '<A-9>', '<Cmd>BufferGoto 9<CR>', opts)
+map('n', '<A-0>', '<Cmd>BufferLast<CR>', opts)
+-- Pin/unpin buffer
+map('n', '<A-p>', '<Cmd>BufferPin<CR>', opts)
+-- Close buffer
+map('n', '<A-c>', '<Cmd>BufferClose<CR>', opts)
+-- Wipeout buffer
+--                 :BufferWipeout
+-- Close commands
+--                 :BufferCloseAllButCurrent
+--                 :BufferCloseAllButPinned
+--                 :BufferCloseAllButCurrentOrPinned
+--                 :BufferCloseBuffersLeft
+--                 :BufferCloseBuffersRight
+-- Magic buffer-picking mode
+map('n', '<C-p>', '<Cmd>BufferPick<CR>', opts)
+-- Sort automatically by...
+map('n', '<Space>bb', '<Cmd>BufferOrderByBufferNumber<CR>', opts)
+map('n', '<Space>bd', '<Cmd>BufferOrderByDirectory<CR>', opts)
+map('n', '<Space>bl', '<Cmd>BufferOrderByLanguage<CR>', opts)
+map('n', '<Space>bw', '<Cmd>BufferOrderByWindowNumber<CR>', opts)
 
 
--- rename rn
 -- vdebug
 -- Snakeize
 -- UltiSnips
@@ -78,14 +131,4 @@ command! -range SnakeCase silent! call <SID>Snakeize(<range>)
 let g:UltiSnipsExpandTrigger="<nop>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
--- NERDTreeConfig
-let g:NERDTreeQuitOnOpen=1
-
-let g:ultisnips_php_scalar_type=1
--- GoTo code navigation.
-keymap('n','<silent> gd <Plug>(coc-definition)
-keymap('n','<silent> gy <Plug>(coc-type-definition)
-keymap('n','<silent> gi <Plug>(coc-implementation)
-keymap('n','<silent> gr <Plug>(coc-references)
-
 --]]

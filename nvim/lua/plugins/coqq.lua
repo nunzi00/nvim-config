@@ -27,7 +27,7 @@ local partial = {}
 
 -- loading lsp.%s module for configure lsp setting.
 partial.setup = function()
-  local servers = {}
+  local servers = {'dockerls', 'dotls', 'eslint', 'tsserver', 'remark_ls', 'intelephense', 'phpactor', 'psalm', 'volar', 'lemminx', 'yamlls', 'bashls'}
 
   servers = install_servers.get_installed_servers()
 
