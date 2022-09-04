@@ -81,3 +81,32 @@ require("nvim-lsp-installer").setup({
         }
     }
 })
+
+
+require'lspconfig'.sumneko_lua.setup{
+  settings = {
+    Lua = {
+      diagnostics = {
+        globals = {
+          'vim'
+        }
+      },
+      workspace = {
+        library = vim.api.nvim_get_runtime_file('', true),
+        checkThirdParty = false
+      }
+    }
+  }
+}
+
+require'lspconfig'.intelephense.setup{}
+require'lspconfig'.bashls.setup{}
+require'lspconfig'.cssls.setup{}
+require'lspconfig'.dockerls.setup{}
+require'lspconfig'.dotls.setup{}
+--require'lspconfig'.efm.setup{}
+require'lspconfig'.jsonls.setup{}
+require'lspconfig'.phpactor.setup{}
+require'lspconfig'.psalm.setup{}
+require'lspconfig'.tsserver.setup{}
+require'lspconfig'.vuels.setup{}

@@ -30,8 +30,7 @@ use { "williamboman/mason.nvim" }
             'f3fora/cmp-spell', 'hrsh7th/cmp-emoji','saadparwaiz1/cmp_luasnip'
         }
   }
-  use 'L3MON4D3/LuaSnip'
-  use {
+  use { 
   'kyazdani42/nvim-tree.lua',
   requires = {
     'kyazdani42/nvim-web-devicons', -- optional, for file icons
@@ -40,6 +39,7 @@ use { "williamboman/mason.nvim" }
 }
   use 'ap/vim-css-color'
 --  use 'SirVer/ultisnips'
+  use 'L3MON4D3/LuaSnip'
 --  use {'neoclide/coc.nvim', branch= 'release'}
   use {'iamcco/markdown-preview.nvim', run = 'cd app && yarn install', cmd = 'MarkdownPreview'}
   use 'editorconfig/editorconfig-vim'
@@ -85,8 +85,46 @@ use { "williamboman/mason.nvim" }
 
     use {'stevearc/aerial.nvim', config = function() require('aerial').setup() end}
     use 'nvim-lua/lsp-status.nvim'
+
+--Theme
     use 'shaunsingh/nord.nvim'
 
+-- Migrate ultisnips to LuaSnip
+   use {
+  "smjonas/snippet-converter.nvim",
+  -- SnippetConverter uses semantic versioning. Example: use version = "1.*" to avoid breaking changes on version 1.
+  -- Uncomment the next line to follow stable releases only.
+  -- version = "*",
+  config = function()
+    local template = {
+      -- name = "t1", (optionally give your template a name to refer to it in the `ConvertSnippets` command)
+      sources = {
+        ultisnips = {
+          -- Add snippets from (plugin) folders or individual files on your runtimepath...
+          "./vim-snippets/UltiSnips",
+          "./latex-snippets/tex.snippets",
+          -- ...or use absolute paths on your system.
+          vim.fn.stdpath("config") .. "/UltiSnips",
+        },
+        snipmate = {
+          "vim-snippets/snippets",
+        },
+      },
+      output = {
+        -- Specify the output formats and paths
+        vscode_luasnip = {
+          vim.fn.stdpath("config") .. "/luasnip_snippets",
+        },
+      },
+    }
+
+    require("snippet_converter").setup {
+      templates = { template },
+      -- To change the default settings (see configuration section in the documentation)
+      -- settings = {},
+    }
+  end
+}
 end)
 
 

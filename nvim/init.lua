@@ -15,37 +15,7 @@ require 'plugins.lsp-config'
 require 'plugins.lspsignature'
 require 'plugins.intelephense'
 require 'plugins.cmp2'
-require'lspconfig'.sumneko_lua.setup{
-  settings = {
-    Lua = {
-      diagnostics = {
-        globals = {
-          'vim'
-        }
-      },
-      workspace = {
-        library = vim.api.nvim_get_runtime_file('', true),
-        checkThirdParty = false
-      }
-    }
-  }
-}
-
-require'lspconfig'.intelephense.setup{}
-require'lspconfig'.bashls.setup{}
-require'lspconfig'.cssls.setup{}
-require'lspconfig'.dockerls.setup{}
-require'lspconfig'.dotls.setup{}
-require'lspconfig'.efm.setup{}
-require'lspconfig'.jsonls.setup{}
-require'lspconfig'.phpactor.setup{}
-require'lspconfig'.psalm.setup{}
-require'lspconfig'.tsserver.setup{}
-require'lspconfig'.vuels.setup{}
-
-
-
-
+require 'plugins.luasnip'
 require 'colorizer'.setup()
 require("mason").setup({
     ui = {
@@ -80,21 +50,21 @@ local lspconfig = require('lspconfig')
   capabilities = lsp_status.capabilities
 })
 ]]
-lspconfig.ghcide.setup({
+lspconfig.intelephense.setup({
   on_attach = lsp_status.on_attach,
   capabilities = lsp_status.capabilities
 })
-lspconfig.rust_analyzer.setup({
+lspconfig.sumneko_lua.setup({
   on_attach = lsp_status.on_attach,
   capabilities = lsp_status.capabilities
 })
 
 -- Example config in lua
-vim.g.nord_contrast = true
-vim.g.nord_borders = false
-vim.g.nord_disable_background = false
-vim.g.nord_italic = false
-vim.g.nord_uniform_diff_background = true
+--vim.api.nvim_set_option('nord_contrast',true)
+--vim.api.nvim_set_option('nord_borders', false)
+--vim.api.nvim_set_option('nord_disable_background', false)
+--vim.api.nvim_set_option('nord_italic', false)
+--vim.api.nvim_set_option('nord_uniform_diff_background', true)
 require('nord').set()
 require('lualine').setup {
   options = {

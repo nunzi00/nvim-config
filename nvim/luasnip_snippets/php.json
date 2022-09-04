@@ -1,0 +1,67 @@
+{
+  "phptest": {
+    "prefix": "phptest",
+    "body": [
+      "/**",
+      " * @test",
+      " */",
+      "public function $1(): void",
+      "{",
+      "\\}"
+    ]
+  },
+  "__dd": {
+    "prefix": "__dd",
+    "body": "dd(__METHOD__.':'__LINE__);"
+  },
+  "VarDebug": {
+    "prefix": "VarDebug",
+    "body": [
+      "echo \"<pre>\";",
+      "var_dump($1);",
+      "echo \"</pre>\";",
+      "exit;"
+    ]
+  },
+  "mockMethod": {
+    "prefix": "mockMethod",
+    "body": [
+      "\\$this->$1",
+      "     ->expects(\\$this->any())",
+      "     ->method($2)",
+      "    ->will(\\$this->returnValue($3));"
+    ],
+    "description" : "Mockear Método"
+  },
+  "mockException": {
+    "prefix": "mockException",
+    "body": [
+      "\\$this->$1",
+      "     ->expects(\\$this->any())",
+      "    ->method($2)",
+      "     ->will(\\$this->throwException(new $3));"
+    ],
+    "description": "Mockear Excepción"
+  },
+  "rtException": {
+    "prefix": "rtException",
+    "body": "throw new \\RuntimeException(sprintf('Implement %s', __METHOD__));",
+    "description": "Lanzar RuntimeException"
+  },
+  "__dump": {
+    "prefix": "__dump",
+    "body": "dump(__METHOD__ . ':' . __LINE__);",
+    "description": "Dump"
+  },
+  "VarDebug": {
+    "prefix" : "VarDebug",
+    "body": [
+"       echo '<pre>'",
+"       var_dump(\\${1});",
+"       echo '</pre>'",
+"       exit;"
+    ],
+    "description" : "Var Dump Exit"
+
+  }
+}

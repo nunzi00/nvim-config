@@ -1,0 +1,7 @@
+{
+  "docblock": {
+    "prefix": "docblock",
+    "description": "Creates a docblock for python",
+    "body": "\"\"\"$1\"\"\""
+  }
+}
