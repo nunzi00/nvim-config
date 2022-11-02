@@ -16,13 +16,13 @@ lspconfig.util.default_config = vim.tbl_deep_extend(
   lspconfig.util.default_config,
   lsp_defaults
 )
-lspconfig.sumneko_lua.setup({
+--[[lspconfig.sumneko_lua.setup({
   single_file_support = true,
   on_attach = function(client, bufnr)
     print('hello')
     lspconfig.util.default_config.on_attach(client, bufnr)
   end
-})
+})]]
 vim.api.nvim_create_autocmd('User', {
   pattern = 'LspAttached',
   desc = 'LSP actions',
@@ -101,15 +101,15 @@ require'lspconfig'.sumneko_lua.setup{
 
 require'lspconfig'.intelephense.setup{}
 require'lspconfig'.bashls.setup{}
-require'lspconfig'.cssls.setup{}
-require'lspconfig'.dockerls.setup{}
-require'lspconfig'.dotls.setup{}
+--require'lspconfig'.cssls.setup{}
+--require'lspconfig'.dockerls.setup{}
+--require'lspconfig'.dotls.setup{}
 --require'lspconfig'.efm.setup{}
 require'lspconfig'.jsonls.setup{}
 require'lspconfig'.phpactor.setup{}
 require'lspconfig'.psalm.setup{}
 require'lspconfig'.tsserver.setup{}
-require'lspconfig'.vuels.setup{}
+--require'lspconfig'.vuels.setup{}
 --[[local lsp = {
   protocol = protocol,
 
