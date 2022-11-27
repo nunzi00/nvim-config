@@ -22,6 +22,7 @@ snippet __te
 /**
  * @test
  * $1
+ * ${1//
  * @group `!p snip.rv = snip.basename`
  */
 public function itShould${1}(): void
@@ -29,13 +30,6 @@ public function itShould${1}(): void
 }
 endsnippet 
 
-snippet __dump
-dump(__METHOD__.' '__LINE__);
-endsnippet
-
-snippet __dd
-dd(__METHOD__.' '__LINE__);
-endsnippet
 snippet VarDebug
 echo "<pre>";
 var_dump(${1});
@@ -62,7 +56,7 @@ throw new \RuntimeException(sprintf('Implement %s', __METHOD__));
 endsnippet
 
 snippet __todo
-//TODO `!v strftime("%Y-%m-%d")` `! whoami` : 
+//TODO `!v strftime("%Y-%m-%d")` `!v whoami` : 
 endsnippet
 
 snippet pub "Public function" b
