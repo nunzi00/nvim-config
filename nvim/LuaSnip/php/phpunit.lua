@@ -16,12 +16,13 @@ return {
     )
   ),
   s(
-    { trig = "zct", dscr = "Generic boilerplate for simple Php Unit Test" },
+    { trig = "__te", dscr = "Generic boilerplate for simple Php Unit Test" },
     fmta(
       [[
         /**
          * @test
          * <>
+         * @group 
          */
         public function <>(): void
         {
