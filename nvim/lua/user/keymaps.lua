@@ -1,6 +1,6 @@
 local opts = { noremap = true, silent = true }
 
--- local term_opts = { silent = true }
+local term_opts = { silent = true }
 
 -- Shorten function name
 local keymap = vim.api.nvim_set_keymap
@@ -103,14 +103,15 @@ keymap("v", "<leader>ec", ":call <C-u>PhpactorExtractConstant<CR>", opts) -- Ext
 
 -- -------------------------------------------------------------------------------
 -- nmap <S-F4> :execute "silent grep! -R " . expand("<cword>") . " ./**" <Bar> cw<CR>
--- inoremap <Leader>rt :RemoveTrail<CR>
+-- inoremap <leader>rt :RemoveTrail<CR>
 -- cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 
 -- " Shortcut for :Files command
--- nmap <Leader>f :Files<CR>
--- "nmap <Leader>fv :vnew<CR>:Files<CR>
--- "nmap <Leader>fh :new<CR>:Files<CR>
--- "nmap <Leader>ft :tabnew<CR>:Files<CR>
+-- nmap <leader>f :Files<CR>
+-- "nmap <leader>fv :vnew<CR>:Files<CR>
+-- "nmap <leader>fh :new<CR>:Files<CR>
+-- "nmap <leader>ft :tabnew<CR>:Files<CR>
 
 -- " Shortcut  for ALEFix
--- nmap  <Leader>af :ALEFix
+-- nmap  <leader>af :ALEFix
+keymap("n", "<F12>", ":ToggleTerm <CR>", {noremap = true, silent = true})

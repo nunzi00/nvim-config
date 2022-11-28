@@ -51,6 +51,17 @@ function _NODE_TOGGLE()
   node:toggle()
 end
 
+local zshshell = Terminal:new({ 
+  cmd = "zsh", 
+  hidden = true
+  }
+)
+
+function _ZSH_TOGGLE()
+  zshshell:toggle()
+end
+
+
 local bashtop = Terminal:new({ cmd = "bashtop", hidden = true })
 
 function _BASHTOP_TOGGLE()
