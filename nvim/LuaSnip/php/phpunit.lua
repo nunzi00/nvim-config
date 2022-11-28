@@ -1,6 +1,10 @@
 local placeholderMap = { i(1, "expected"), i(2, "actual") }
 local singlePlaceholderMap = { i(1, "actual") }
 
+local function snakeize(args, parent)
+  return string.lower(string.gsub(args[1][1], "%u", "_%1"))
+end
+
 return {
   s(
     { trig = "ppt", dscr = "Generic boilerplate for simple Php Unit Test" },
