@@ -74,7 +74,7 @@ keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
 -- Command
 -- Expand current folder
 keymap("c", "%%", [[getcmdtype() == ':' ? expand('%:h').'/' : '%%']], { noremap = true, silent = false, expr = true })
-keymap("c", "Q", "Bdelete", { noremap = true, silent = true })
+-- keymap("c", "Q", "Bdelete", { noremap = true, silent = true })
 
 -- Telescope
 keymap("n", "<leader>f", "<cmd>Telescope find_files<CR>", opts)
@@ -114,4 +114,6 @@ keymap("v", "<leader>ec", ":call <C-u>PhpactorExtractConstant<CR>", opts) -- Ext
 
 -- " Shortcut  for ALEFix
 -- nmap  <leader>af :ALEFix
-keymap("n", "<F12>", ":ToggleTerm <CR>", {noremap = true, silent = true})
+-- ToggleTerm
+keymap("n", "<F12>", ":ToggleTerm <CR>", opts)
+keymap("n", "<F11>", ":lua _LAZYGIT_TOGGLE()<CR>", opts)
