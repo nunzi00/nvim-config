@@ -19,7 +19,7 @@ local modules= {
   -- "user.indentline",
   "user.alpha",
   "user.autocommands",
-  "user.whichkey"
+  "user.whichkey",
 }
 for k, v in pairs(modules) do
 package.loaded[v]=nil
