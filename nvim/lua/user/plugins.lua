@@ -93,6 +93,11 @@ return packer.startup(function(use)
     run = ":TSUpdate"
   }
 
+  -- Debugger
+  use {'mfussenegger/nvim-dap'}
+  use {'theHamsta/nvim-dap-virtual-text'}
+  use {"rcarriga/nvim-dap-ui"}
+
   -- Colorschemes
   use "lunarvim/colorschemes"
   -- use { "folke/tokyonight.nvim", commit = "66bfc2e8f754869c7b651f3f47a2ee56ae557764" }
@@ -102,11 +107,11 @@ return packer.startup(function(use)
   -- use 'tomasiser/vim-code-dark'
   -- use 'trusktr/seti.vim'
   use 'patstockwell/vim-monokai-tasty'
-  use 'nanotech/jellybeans.vim'
+  -- use 'nanotech/jellybeans.vim'
   -- use 'chuling/vim-equinusocio-material'
   use 'sainnhe/sonokai'
   -- Plug 'kyoz/purify', { 'rtp': 'vim' }
-  -- use 'morhetz/gruvbox'
+  use 'morhetz/gruvbox'
 
   -- "Airline
   -- Plug 'vim-airline/vim-airline'

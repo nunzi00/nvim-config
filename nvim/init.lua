@@ -20,6 +20,7 @@ local modules= {
   "user.alpha",
   "user.autocommands",
   "user.whichkey",
+  "user.dap"
 }
 for k, v in pairs(modules) do
 package.loaded[v]=nil

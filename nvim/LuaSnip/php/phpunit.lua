@@ -1,5 +1,5 @@
-local placeholderMap = { i(1, "expected"), i(2, "actual") }
-local singlePlaceholderMap = { i(1, "actual") }
+-- local placeholderMap = { i(1, "expected"), i(2, "actual") }
+-- local singlePlaceholderMap = { i(1, "actual") }
 
 local function snakeize(args, parent)
   return string.lower(string.gsub(args[1][1], "%u", "_%1"))
@@ -36,15 +36,27 @@ return {
       { f(snakeize, {1}), i(1, "testName"), i(0) }
     )
   ),
-  s({ trig = "ase"}, fmt("$this->assertEquals({}, {})", placeholderMap)),
-  s({ trig = "asne"}, fmt("$this->assertNotEquals({}, {})", placeholderMap)),
-  s({ trig = "ass"}, fmt("$this->assertSame({}, {})", placeholderMap)),
-  s({ trig = "asns"}, fmt("$this->assertNotSame({}, {})", placeholderMap)),
-  s({ trig = "asf"}, fmt("$this->assertFalse({})", singlePlaceholderMap)),
-  s({ trig = "ast"}, fmt("$this->assertTrue({})", singlePlaceholderMap)),
-  s({ trig = "asco"}, fmt("$this->assertCount({})", singlePlaceholderMap)),
-  s({ trig = "asi"}, fmt("$this->assertInstanceOf({}, {})", placeholderMap)),
-  s({ trig = "ashk"}, fmt("$this->assertArrayHasKey({}, {})", placeholderMap)),
+  s({ trig = "asco"}, fmt("$this->assertCount({}, {})", { i(1, "expected"), i(2, "actual") })),
+  s({ trig = "asi"}, fmt("$this->assertInstanceOf({}, {})", { i(1, "expected"), i(2, "actual") })),
+  s({ trig = "ashk"}, fmt("$this->assertArrayHasKey({}, {})", { i(1, "expected"), i(2, "actual") })),
+  s({ trig = "ase"}, fmt("$this->assertEquals({}, {})", { i(1, "expected"), i(2, "actual") })),
+  s({ trig = "asne"}, fmt("$this->assertNotEquals({}, {})", { i(1, "expected"), i(2, "actual") })),
+  s({ trig = "ass"}, fmt("$this->assertSame({}, {})", { i(1, "expected"), i(2, "actual") })),
+  s({ trig = "asns"}, fmt("$this->assertNotSame({}, {})", { i(1, "expected"), i(2, "actual") })),
+  s({ trig = "asf"}, fmt("$this->assertFalse({})", { i(1, "actual")})),
+  s({ trig = "ast"}, fmt("$this->assertTrue({})", { i(1, "actual") })),
+
+
+
+  -- s({ trig = "ase"}, fmt("$this->assertEquals({}, {})", placeholderMap)),
+  -- s({ trig = "asne"}, fmt("$this->assertNotEquals({}, {})", placeholderMap)),
+  -- s({ trig = "ass"}, fmt("$this->assertSame({}, {})", placeholderMap)),
+  -- s({ trig = "asns"}, fmt("$this->assertNotSame({}, {})", placeholderMap)),
+  -- s({ trig = "asf"}, fmt("$this->assertFalse({})", singlePlaceholderMap)),
+  -- s({ trig = "ast"}, fmt("$this->assertTrue({})", singlePlaceholderMap)),
+  -- s({ trig = "asco"}, fmt("$this->assertCount({})", singlePlaceholderMap)),
+  -- s({ trig = "asi"}, fmt("$this->assertInstanceOf({}, {})", placeholderMap)),
+  -- s({ trig = "ashk"}, fmt("$this->assertArrayHasKey({}, {})", placeholderMap)),
 }
 -- snippet asfex "$this->assertFileExists('path/to/file')"
 --   $this->assertFileExists(${1:'path/to/file'});
