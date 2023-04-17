@@ -1,0 +1,15 @@
+<?php
+
+declare(strict_types=1);
+
+namespace {{ prototype.namespace }};
+use Getlife\Shared\Application\Symfony\QueryHandlerInterface;
+
+{% for class in prototype.classes %}
+final class {{ class.name }} implements QueryHandlerInterface
+{
+  public function __invoke(): void
+    {
+    }
+}
+{% endfor %}

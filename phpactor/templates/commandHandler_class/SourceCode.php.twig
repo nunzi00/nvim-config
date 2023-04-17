@@ -1,0 +1,16 @@
+<?php
+
+declare(strict_types=1);
+
+namespace {{ prototype.namespace }};
+use Getlife\Shared\Application\Symfony\CommandHandlerInterface;
+
+{% for class in prototype.classes %}
+final class {{ class.name }} implements CommandHandlerInterface
+{
+  public function __invoke(): void
+    {
+    }
+}
+{% endfor %}
+

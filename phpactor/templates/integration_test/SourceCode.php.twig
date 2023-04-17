@@ -1,0 +1,16 @@
+<?php
+
+namespace {{ prototype.namespace }};
+
+use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
+
+{% for class in prototype.classes %}
+class {{}} extends KernelTestCase
+{
+    protected function setUp(): void
+    {
+        self::bootKernel();
+        $container = static::getContainer();
+    }
+}
+{% endfor %}

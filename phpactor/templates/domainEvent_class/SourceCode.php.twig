@@ -1,0 +1,42 @@
+<?php
+declare(strict_types=1);
+
+namespace {{ prototype.namespace }};
+
+use DateTimeImmutable;
+use Getlife\Shared\Domain\Event\DomainEvent;
+use JsonException;
+use ReflectionClass;
+
+{% for class in prototype.classes %}
+final class {{ class_name }} implements DomainEvent
+{
+    private DateTimeImmutable $occurredOn;
+
+    public function __construct(
+    ) {
+        $this->occurredOn = new DateTimeImmutable();
+    }
+
+    /**
+     * @throws JsonException
+     */
+    public function __toString(): string
+    {
+        $data = [
+          
+        ];
+        return json_encode($data, JSON_THROW_ON_ERROR);
+    }
+
+    public function occurredOn(): DateTimeImmutable
+    {
+        return $this->occurredOn;
+    }
+
+    public function eventName(): string
+    {
+        return (new ReflectionClass($this))->getShortName();
+    }
+}
+{% endfor %}

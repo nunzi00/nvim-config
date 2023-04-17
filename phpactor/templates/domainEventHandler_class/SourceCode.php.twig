@@ -1,0 +1,14 @@
+<?php
+declare(strict_types=1);
+
+namespace {{ prototype.namespace }};
+
+use Getlife\Shared\Application\Symfony\EventHandlerInterface;
+
+{% for class in prototype.classes %}
+final class {{ class.name }} implements EventHandlerInterface
+{
+
+}
+{% endfor %}
+
