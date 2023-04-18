@@ -5,7 +5,7 @@ namespace {{ prototype.namespace }};
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 {% for class in prototype.classes %}
-class {{}} extends KernelTestCase
+class {{ class.name }} extends KernelTestCase
 {
     protected function setUp(): void
     {
