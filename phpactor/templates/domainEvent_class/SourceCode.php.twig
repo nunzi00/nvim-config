@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace {{ prototype.namespace }};
@@ -9,7 +10,7 @@ use JsonException;
 use ReflectionClass;
 
 {% for class in prototype.classes %}
-final class {{ class_name }} implements DomainEvent
+final class {{ class.name }} implements DomainEvent
 {
     private DateTimeImmutable $occurredOn;
 
