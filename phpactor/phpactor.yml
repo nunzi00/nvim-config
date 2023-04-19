@@ -8,5 +8,5 @@ code_transform.class_new.variants:
     commandHandler: commandHandler_class
     query: query_class
     queryHandler: queryHandler_class
-    event: event_class
-    eventHandler: eventHandler_class
+    domainEvent: domainEvent_class
+    domainEventHandler: domainEventHandler_class
